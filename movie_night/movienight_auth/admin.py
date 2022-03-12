@@ -1,3 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from movienight_auth.models import User
 
-# Register your models here.
+class MovieNightUserAdmin(UserAdmin):
+    pass
+
+
+admin.site.register(User, MovieNightUserAdmin)
