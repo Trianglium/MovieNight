@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Movie Nights{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2>My Movie Nights</h2>
+        <ul>
+        {% for created_movie_night in created_movie_nights %}
+            <li>
+                <a href="{% url 'movie_night_detail_ui' created_movie_night.pk %}">{{ created_movie_night.movie.title }} on {{ created_movie_night.start_time }}</a>
+            </li>
+        {% empty %}
+            <li>You haven&rsquo;t created any Movie Nights yet. Search for a movie to create one.</li>
+        {% endfor %}
+        </ul>
+        <h2>Invited Movie Nights</h2>
+    <ul>
+        {% for invited_movie_night in invited_movie_nights %}
+            <li>
+                <a href="{% url 'movie_night_detail_ui' invited_movie_night.pk %}">{{ invited_movie_night.movie.title }} on {{ invited_movie_night.start_time }}</a>
+            </li>
+        {% empty %}
+            <li>You haven&rsquo;t been invited to any Movie Nights.</li>
+        {% endfor %}
+    </ul>
+    </div>
+</div>
+{% endblock %}

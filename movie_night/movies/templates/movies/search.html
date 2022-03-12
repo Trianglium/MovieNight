@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% if did_search %}
+        Search results for '{{ search_form.term.value }}'
+    {% else %}
+        Movie Search
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h2>Movie Search</h2>
+            <form class="row row-cols-lg-auto g-3 align-items-center" method="post">
+                {% csrf_token %}
+                <div class="col-12">
+                    {{ search_form.term|as_crispy_field }}
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary mt-3">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if did_search %}
+        <div class="row">
+            <div class="col">
+                {% if movie_list %}
+                    <ul>
+                        {% for movie in movie_list %}
+                            <li>
+                                {{ movie.title }} ({{ movie.year }}) <a
+                                    href="{% url "movie_detail_ui" movie.imdb_id %}">[Details]</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h3>No results found.</h3>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

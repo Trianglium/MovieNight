@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Movie Night for {{ movie_night.movie.title }} ({{ movie_night.movie.year }}){% endblock %}
+{% block content %}
+    <div class="col">
+        <div class="row">
+            <h2>Movie Night for {{ movie_night.movie.title }} ({{ movie_night.movie.year }})</h2>
+            <p class="mb-3">
+                Scheduled for: {{ movie_night.start_time }}
+                {% if movie_night.end_time %}(until {{ movie_night.end_time }}){% endif %}
+            </p>
+            <p class="mb-3">
+                {{ movie_night.movie.plot }}
+            </p>
+            <h3>Invites</h3>
+            <ul>
+                {% for invite in movie_night.invites.all %}
+                    <li>
+                        {{ invite.invitee.email }}
+                        ({% if invite.attendance_confirmed %}Is {% if not invite.is_attending %}not {% endif %}attending{% else %}Awaiting response{% endif %})
+                    </li>
+                {% empty %}
+                    <li>No invites yet</li>
+                {% endfor %}
+            </ul>
+            {% if is_in_the_past %}
+                <h4>This Movie Night is in the past, and can&rsquo;t be edited.</h4>
+            {% else %}
+                {% if is_creator %}
+                    <h4>Invite someone else</h4>
+                    <p>{% crispy invitee_form %}</p>
+                {% else %}
+                    <h4>Your attendance</h4>
+                    {% crispy attendance_form %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

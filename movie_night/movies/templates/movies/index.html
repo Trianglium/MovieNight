@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col text-center">
+            <h1>Welcome to <span class="movie">Movie</span><span class="night">Night</span></h1>
+            <p class="mb-3">Schedule a Movie Night with your friends.</p>
+            {% if request.user.is_anonymous %}
+            <p>
+                Please <a href="{% url 'login' %}">Log In</a> or <a href="/accounts/register/">Sign Up</a>.
+            </p>
+            {% else %}
+            <p>
+                Check out your list of <a href="{% url 'movie_night_list_ui' %}">Movie Nights</a>,
+                or perform a <a href="{% url 'movie_search_ui' %}">Movie Search</a> to create your own.
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

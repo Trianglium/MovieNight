@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}{{ movie.title }} ({{ movie.year }}){% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h2>{{ movie.title }}</h2>
+            <p>{% for genre in movie.genres.all %}{{ genre.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+            <p>{{ movie.plot }}</p>
+            <h3>Create Movie Night</h3>
+            <p>
+                {% crispy movie_night_form %}
+            </p>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr('#id_start_time', {
+        enableTime: true
+      })
+    </script>
+{% endblock %}
