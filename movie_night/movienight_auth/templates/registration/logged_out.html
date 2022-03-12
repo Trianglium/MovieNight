@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2>Logged out</h2>
+        <p class="mb-3">Thanks for visiting Movie Night, we hope you come back soon.</p>
+        <p><a href="{% url 'login' %}">Log in again</a></p>
+    </div>
+</div>
+{% endblock %}
