@@ -1,0 +1,1 @@
+Activate your Movie Night account! You have {{ expiration_days }} days!
