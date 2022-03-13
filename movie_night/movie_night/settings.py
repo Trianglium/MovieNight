@@ -118,6 +118,4 @@ AUTH_USER_MODEL = "movienight_auth.User"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-BASE_URL = os.environ.get("CODIO_HOSTNAME") + "-8000.codio.io"
-
 OMDB_KEY = OMDB_KEY
