@@ -1,0 +1,9 @@
+Hi,
+
+The Movie Night for {{ movie_night.movie.title }} will be starting at {{ movie_night.start_time }}
+{% if movie_night.end_time %}It will finish around {{ movie_night.end_time }}{% endif %}
+
+You can see who else is attending at {{ movie_night_url }}
+
+Thanks,
+The Movie Night Team
