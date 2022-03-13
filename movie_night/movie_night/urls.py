@@ -16,22 +16,28 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
+
 from django_registration.backends.activation.views import RegistrationView
+
+from django_registration.forms import RegistrationForm as DefaultRegistrationForm
 
 import movienight_auth.views
 import movies.views
-from movienight_auth.forms import RegistrationForm
+
+from movienight_auth.forms import RegistrationForm as MovieNightRegistrationForm
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/profile/", movienight_auth.views.profile, name="profile"),
-    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/", include("django_registration.backends.activation.urls")),
     path(
         "accounts/register/",
-        RegistrationView.as_view(form_class=RegistrationForm),
+        RegistrationView.as_view(form_class=MovieNightRegistrationForm),
         name="django_registration_register",
     ),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("", movies.views.index),
+
     path("movie-nights/", movies.views.movie_night_list, name="movie_night_list_ui"),
     path(
         "movie-nights/<int:pk>/",
