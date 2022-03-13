@@ -1,0 +1,11 @@
+Hi,
+
+{{ movie_night_invitation.invitee.email }} has updated their attendance status to your Movie Night for
+{{ movie_night.movie.title }}.
+
+They will{% if not is_attending %} not{% endif %} be attending your Movie Night.
+
+To see the full list of attendees, please visit {{ movie_night_url }}
+
+Thanks,
+The Movie Night Team

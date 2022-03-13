@@ -1,0 +1,1 @@
+{{ movie_night_invitation.invitee.email }} has update their attendance to your Movie Night
