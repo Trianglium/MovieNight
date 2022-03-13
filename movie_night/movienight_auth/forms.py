@@ -1,11 +1,12 @@
 from django_registration.forms import RegistrationForm as DefaultRegistrationForm
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
 from movienight_auth.models import User
 
 class RegistrationForm(DefaultRegistrationForm):
-    class Meta(RegistrationForm.Meta):
+    class Meta(DefaultRegistrationForm.Meta):
         model = User
 
     def __init__(self, *args, **kwargs):
