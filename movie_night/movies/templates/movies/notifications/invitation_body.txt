@@ -1,0 +1,8 @@
+Hi,
+
+{{ creator.email }} has invited you to watch {{ movie_night.movie.title }} at {{ movie_night.start_time }}
+
+To confirm your attendance, please visit {{ movie_night_url }}
+
+Thanks,
+The Movie Night team
