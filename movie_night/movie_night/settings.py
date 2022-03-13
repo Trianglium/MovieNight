@@ -20,13 +20,16 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'movies.apps.MoviesConfig',
+    "movienight_auth",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "movies.apps.MoviesConfig",
 ]
 
 MIDDLEWARE = [
@@ -40,6 +43,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'movie_night.urls'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 TEMPLATES = [
     {
@@ -115,6 +121,8 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "movienight_auth.User"
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
