@@ -127,3 +127,5 @@ ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 OMDB_KEY = OMDB_KEY
+
+BASE_URL = os.environ.get("CODIO_HOSTNAME") + "-8000.codio.io"
