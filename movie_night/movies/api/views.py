@@ -21,6 +21,11 @@ class MovieViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
 
+    def get_object(self):
+        movie_data = super(MovieViewSet, self).get_object()
+        movie = fill_movie_details(movie_data)
+        return movie 
+
     @action(methods=["get"], detail=False)
     def search(self, request):
         search_serializer = MovieSearchSerializer(data=request.GET)
@@ -100,6 +105,11 @@ class MovieNightViewSet(viewsets.ModelViewSet):
 
         serializer.save()
         return redirect("movienight-detail", (movie_night.pk,))
+
+    def get_serializer_class(self):
+        if self.action in == "create":
+            return MovieNightCreateSerializer
+        return MovieNightSerializer
 
 
 class MovieNightInvitationViewSet(
