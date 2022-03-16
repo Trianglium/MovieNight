@@ -24,7 +24,7 @@ class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = ["title", "year", "runtime_minutes", "imdb_id", "genres", "plot", "is_full_record"]
-        readonly = ["title", "year", "runtime_minutes", "imdb_id", "genres", "plot", "is_full_record"]
+        read_only_fields = ["title", "year", "runtime_minutes", "imdb_id", "genres", "plot", "is_full_record"]
 
 class MovieTitleAndUrlSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedRelatedField("movie-detail", read_only=True)
