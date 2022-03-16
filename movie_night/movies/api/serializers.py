@@ -22,7 +22,9 @@ class MovieSerializer(serializers.ModelSerializer):
     genres = GenreField(slug_field="name", many=True, read_only=True)
 
     class Meta:
-        pass
+        model = Movie
+        fields = ["title", "year", "runtime_minutes", "imdb_id", "genres", "plot", "is_full_record"]
+        readonly = ["title", "year", "runtime_minutes", "imdb_id", "genres", "plot", "is_full_record"]
 
 class MovieTitleAndUrlSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedRelatedField("movie-detail", read_only=True)
