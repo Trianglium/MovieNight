@@ -14,30 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf import settings
 from django.urls import path, include
-
 from django_registration.backends.activation.views import RegistrationView
-
-from django_registration.forms import RegistrationForm as DefaultRegistrationForm
 
 import movienight_auth.views
 import movies.views
-
-from movienight_auth.forms import RegistrationForm as MovieNightRegistrationForm
+from movienight_auth.forms import RegistrationForm
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/profile/", movienight_auth.views.profile, name="profile"),
     path(
         "accounts/register/",
-        RegistrationView.as_view(form_class=MovieNightRegistrationForm),
+        RegistrationView.as_view(form_class=RegistrationForm),
         name="django_registration_register",
     ),
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", movies.views.index),
-
     path("movie-nights/", movies.views.movie_night_list, name="movie_night_list_ui"),
     path(
         "movie-nights/<int:pk>/",
@@ -46,4 +40,5 @@ urlpatterns = [
     ),
     path("search/", movies.views.movie_search, name="movie_search_ui"),
     path("movies/<slug:imdb_id>/", movies.views.movie_detail, name="movie_detail_ui"),
+    path("api/v1/", include("movienight.api_urls")),
 ]
