@@ -35,6 +35,7 @@ class Dev(Configuration):
         "django.contrib.staticfiles",
         "crispy_forms",
         "crispy_bootstrap5",
+        "django_celery_results",
         "movies",
         "rest_framework",
         "rest_framework.authtoken",
@@ -197,13 +198,16 @@ class Dev(Configuration):
             "rest_framework.authentication.SessionAuthentication",
             "rest_framework.authentication.TokenAuthentication",
             "rest_framework_simplejwt.authentication.JWTAuthentication",
-        ]
+        ],
         "DEFAULT_PERMISSION_CLASSES": [
             "rest_framework.permissions.IsAuthenticated"
         ],
         "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
         "PAGE_SIZE": 100,
     }
+
+    CELERY_RESULT_BACKEND = "django-db"
+    CELERY_BROKER_URL = "redis://localhost:6379/0"
 
 class Prod(Dev):
     DEBUG = False
