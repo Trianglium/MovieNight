@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from movies.models import MovieNightInvitation
 from movies.tasks import send_invitation, send_attendance_change
 
-USE_CELERY = False
+USE_CELERY = True
 
 @receiver(post_save, sender=MovieNightInvitation, dispatch_uid="invitation_create")
 def invitation_create(sender, created, instance, **kwargs):
