@@ -1,5 +1,5 @@
 import os
-import pathlib from Path
+from pathlib import Path
 from datetime import timedelta
 from komdb import OMDB_KEY
 
